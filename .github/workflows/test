@@ -1,0 +1,26 @@
+name: Test deployment
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  Deploy-on-Test:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Lint Ansible Playbook
+        uses: ansible/ansible-lint-action@master
+        with:
+          targets: |
+            ../ansible/playbook.yml
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2.2.0
+        with:
+          playbook: ansible-master.yml
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          directory: ansible
+          options: |
+            --inventory ../hosts.txt
