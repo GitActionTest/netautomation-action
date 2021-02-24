@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Lint Ansible Playbook
-        uses: ansible/ansible-lint-action@master
+        uses: lpenz/ansible-lint-action/tree/dockeraction@master
         with:
           targets: |
             ../ansible/playbook.yml
