@@ -15,7 +15,7 @@ jobs:
         uses: ansible/ansible-lint-action@master
         with:
           targets: |
-            ../ansible/playbook.yml
+            ./ansible/playbook.yml
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2.2.0
         with:
