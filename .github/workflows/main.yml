@@ -34,6 +34,7 @@ jobs:
       - name: Setup Ansible
         run: |
           sudo cp ./hosts.txt /etc/ansible/hosts
+          sudo cp ./ansible/servers /etc/ansible/group_vars/
       - name: Deploy public key
         run: |
           for host in `egrep -v '(^\[|^$)' hosts.txt`;  
