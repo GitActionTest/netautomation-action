@@ -1,0 +1,4 @@
+---
+ansible_ssh_user: netlab
+ansible_python_interpreter: /usr/bin/python3
+ansible_ssh_private_key_file: /home/netlab/.ssh/id_rsa
