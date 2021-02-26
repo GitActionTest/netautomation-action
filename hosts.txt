@@ -1,7 +1,11 @@
-[servers]
-webserver 172.16.226.158
-dbserver 172.16.38.153
-logserver 172.16.97.195
+[webserver]
+172.16.226.158
+
+[dbserver]
+172.16.38.153
+
+[logserver]
+172.16.97.195
 
 [test]
 test1 172.16.98.28
