@@ -80,7 +80,7 @@
     - name: configure rsyslog
       lineinfile:
         path: /etc/rsyslog.conf
-        line: '*.* @<logserver_ip>:514'
+        line: '*.* @172.16.97.195:514'
         state: present
       notify:
         - restart rsyslogd
