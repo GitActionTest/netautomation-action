@@ -1,0 +1,19 @@
+---
+- name: Install firewalld
+  hosts: servers
+  become: true
+  tasks:
+    - name: Install firewalld
+      apt:
+        name: firewalld
+        state: present
+        
+    - name: Start firewalld
+      service:
+        name: firewalld
+        state: started
+        
+    - name: Disable ufw
+      service:
+        name: ufw
+        state: stopped
