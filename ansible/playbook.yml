@@ -6,8 +6,7 @@
     - name: Install firewalld
       apt:
         name: firewalld
-        state: present
-        
+        state: present  
     - name: Start firewalld
       service:
         name: firewalld
@@ -17,7 +16,6 @@
       service:
         name: ufw
         state: stopped
-    
 # PLAY 2: nginx on webserver
 - hosts: webserver
   become: yes
@@ -25,26 +23,22 @@
     - name: Install nginx
       include_tasks: nginx_tasks.yaml   # in order to reuse code we can include
                                        # the tasks we have already written
-    
     - name: open firewall port
       firewalld:
         service: http
         immediate: true
         permanent: true
         state: enabled
-    
     - name: set content directory
       file:
         path: /var/www/html
         state: directory
         mode: u=rwx,g=rwx,o=rx,g+s
-        
     - name: create default page content
       copy:
         content: "Welcome to {{ ansible_fqdn }} on {{ ansible_default_ipv4.address }}\n"
         dest: /var/www/html/index.html
         mode: u=rw,g=rw,o=r
-        
 # PLAY 3: MariaDB on dbserver
 - hosts: dbserver
   become: yes
@@ -53,13 +47,11 @@
       apt:
         name: mariadb-server
         state: latest
-    
     - name: enable and start MariaDB server
       service:
         name: mariadb
         enabled: yes
         state: started
-    
 # PLAY 4: rsyslog on logserver
 - hosts: logserver
   become: yes
@@ -74,20 +66,17 @@
         - '$UDPServerRun 514'
       notify:
         - restart rsyslogd
-    
     - name: open firewall port
       firewalld:
         port: 514/udp
         immediate: true
         permanent: true
         state: enabled
-
   handlers:
     - name: restart rsyslogd
       service:
         name: rsyslog
         state: restarted
-    
 #PLAY 5: rsyslog config on webserver and dbserver    
 - hosts: webserver:dbserver
   become: yes
@@ -99,7 +88,6 @@
         state: present
       notify:
         - restart rsyslogd
-    
   handlers:
     - name: restart rsyslogd
       service:
