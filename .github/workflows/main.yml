@@ -28,14 +28,10 @@ jobs:
           sudo apt-get update && sudo apt-get -y upgrade
           sudo apt-get install -y ansible
           sudo apt-get install -y ansible-lint
-          sudo ansible-galaxy collection install ansible.posix
           sudo apt-get install -y sshpass
-          sudo apt-get install -y docker
-          sudo apt-get install -y docker.io
       - name: Setup Ansible
         run: |
           sudo cp ./hosts.txt /etc/ansible/hosts
-          sudo cp ./ansible/servers /etc/ansible/group_vars/
       - name: Deploy public key
         run: |
           for host in `egrep -v '(^\[|^$)' hosts.txt`;  
