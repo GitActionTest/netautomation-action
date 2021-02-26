@@ -29,6 +29,9 @@ jobs:
           sudo apt-get install -y ansible
           sudo apt-get install -y ansible-lint
           sudo apt-get install -y sshpass
+      - name: Setup Ansible
+        run: |
+          sudo cp ./hosts.txt /etc/ansible/hosts
       - name: Deploy public key
         run: |
           for host in `egrep -v '(^\[|^$)' hosts.txt`;  
