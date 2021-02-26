@@ -1,7 +1,23 @@
+  
 ---
-# PLAY 1: firewalld on all servers
-- name: Install firewalld           # by importing this playbook, firewalld is
-  import_playbook: ./ansible/firewalld.yaml   # installed on all our servers at the beginning
+- name: Install firewalld
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install firewalld
+      apt:
+        name: firewalld
+        state: present
+        
+    - name: Start firewalld
+      service:
+        name: firewalld
+        state: started
+        
+    - name: Disable ufw
+      service:
+        name: ufw
+        state: stopped
     
 # PLAY 2: nginx on webserver
 - hosts: webserver
