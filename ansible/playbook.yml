@@ -11,7 +11,6 @@
       service:
         name: firewalld
         state: started
-        
     - name: Disable ufw
       service:
         name: ufw
@@ -46,7 +45,7 @@
     - name: install MariaDB server
       apt:
         name: mariadb-server
-        state: latest
+        state: present
     - name: enable and start MariaDB server
       service:
         name: mariadb
