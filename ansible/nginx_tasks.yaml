@@ -1,9 +1,3 @@
----
-- name: Install nginx
-  hosts: webserver
-  become: yes
-      
-  tasks:
   - name: Install nginx
     apt:
       name: nginx
