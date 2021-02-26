@@ -29,6 +29,8 @@ jobs:
           sudo apt-get install -y ansible
           sudo apt-get install -y ansible-lint
           sudo apt-get install -y sshpass
+          sudo apt-get install -y docker
+          sudo apt-get install -y docker.io
       - name: Setup Ansible
         run: |
           sudo cp ./hosts.txt /etc/ansible/hosts
