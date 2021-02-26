@@ -6,7 +6,7 @@
     - name: Install firewalld
       apt:
         name: firewalld
-        state: present  
+        state: present
     - name: Start firewalld
       service:
         name: firewalld
