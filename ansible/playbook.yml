@@ -27,7 +27,7 @@
                                        # the tasks we have already written
     
     - name: open firewall port
-      ansible.posix.firewalld:
+      firewalld:
         service: http
         immediate: true
         permanent: true
@@ -76,7 +76,7 @@
         - restart rsyslogd
     
     - name: open firewall port
-      ansible.posix.firewalld:
+      firewalld:
         port: 514/udp
         immediate: true
         permanent: true
