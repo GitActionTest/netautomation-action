@@ -8,19 +8,18 @@ on:
 jobs:
   Deploy-on-Test:
     runs-on: self-hosted
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Lint Ansible Playbook
-        uses: ansible/ansible-lint-action@master
-        with:
-          targets: |
-            ./ansible/playbook.yml
-      - name: Run playbook
+      - uses: actions/checkout@v2
+      - name: Ansible linting
+        run: |
+          sudo ansible-lint ./ansible/playbook.yml
+      - name: Run Ansible playbook
         uses: dawidd6/action-ansible-playbook@v2.2.0
         with:
-          playbook: ansible-master.yml
-          key: ${{secrets.SSH_PRIVATE_KEY}}
+          # Ansible playbook filepath
+          playbook: playbook.yml
           directory: ansible
+          key: ${{secrets.SSH_PRIVATE_KEY}}
           options: |
-            --inventory ../hosts.txt
+            --inventory ../test_host.txt
