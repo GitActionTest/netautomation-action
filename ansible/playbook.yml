@@ -20,8 +20,7 @@
   become: yes
   tasks:
     - name: Install nginx
-      include_tasks: nginx_tasks.yaml   # in order to reuse code we can include
-                                       # the tasks we have already written
+      include_tasks: nginx_tasks.yaml
     - name: open firewall port
       firewalld:
         service: http
@@ -56,7 +55,7 @@
   become: yes
   tasks:
     - name: configure rsyslog remote log reception over udp
-      lineinfile:                       # a module to change a single line in a file
+      lineinfile:
         path: /etc/rsyslog.conf
         line: "{{ item }}"
         state: present
